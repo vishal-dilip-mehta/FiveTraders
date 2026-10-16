@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS Investments.StockTransactionImport;
+GO
+
 CREATE TABLE Investments.StockTransactionImport
 (
     TickerName NVARCHAR(10) NOT NULL,

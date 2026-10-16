@@ -1,6 +1,3 @@
-DROP TABLE IF EXISTS Investments.StockTransaction;
-GO
-
 CREATE TABLE Investments.StockTransaction
 (
     StockTransactionId INT IDENTITY(1,1) NOT NULL,

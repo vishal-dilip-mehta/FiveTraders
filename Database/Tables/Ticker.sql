@@ -1,6 +1,3 @@
-DROP TABLE IF EXISTS Investments.Ticker;
-GO
-
 CREATE TABLE Investments.Ticker
 (
     TickerId INT IDENTITY(1,1) NOT NULL,
