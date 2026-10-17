@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="FiveTraders.Api/FiveTraders.Api.csproj" />
+  <Project Path="FiveTraders.Repository/FiveTraders.Repository.csproj" />
+  <Project Path="FiveTraders.DataModel/FiveTraders.DataModel.csproj" />
+  <Project Path="FiveTraders.Service/FiveTraders.Service.csproj" />
+</Solution>

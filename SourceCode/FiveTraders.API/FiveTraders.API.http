@@ -1,0 +1,6 @@
+@FiveTraders.Api_HostAddress = http://localhost:5277
+
+GET {{FiveTraders.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
