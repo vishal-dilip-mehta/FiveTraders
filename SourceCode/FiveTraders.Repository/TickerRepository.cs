@@ -23,8 +23,8 @@ public sealed class TickerRepository : ITickerRepository
             throw new ArgumentException("Ticker names cannot exceed 10 characters.", nameof(tickerName));
         }
 
-        await using SqlConnection connection = new SqlConnection(this.connectionString);
-        using SqlCommand command = new SqlCommand("Investments.TickerRead", connection);
+        await using SqlConnection connection = new(this.connectionString);
+        using SqlCommand command = new("Investments.TickerRead", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@TickerId", SqlDbType.Int).Value = (object?)tickerId ?? DBNull.Value;
         // The existing stored procedure names this parameter TicketName.
@@ -51,8 +51,8 @@ public sealed class TickerRepository : ITickerRepository
             throw new ArgumentException("Ticker names cannot exceed 10 characters.", nameof(ticker));
         }
 
-        await using SqlConnection connection = new SqlConnection(this.connectionString);
-        using SqlCommand command = new SqlCommand("Investments.TickerUpsert", connection);
+        await using SqlConnection connection = new(this.connectionString);
+        using SqlCommand command = new("Investments.TickerUpsert", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@TickerId", SqlDbType.Int).Value = ticker.TickerId == 0 ? DBNull.Value : ticker.TickerId;
         command.Parameters.Add("@TicketName", SqlDbType.NVarChar, 10).Value = ticker.TickerName;

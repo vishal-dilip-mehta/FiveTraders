@@ -6,12 +6,12 @@ using FiveTraders.ResponseModel;
 namespace FiveTraders.Service;
 
 public sealed class InvestmentsService(ITickerRepository tickerRepository,
-                                      IStockTransactionRepository stockTransactionRepository)
+                                       IStockTransactionRepository stockTransactionRepository)
     : IInvestmentsService
 {
     public async Task<IReadOnlyList<TickerResponse>> ReadTickers(int? tickerId = null,
-                                                              string? tickerName = null,
-                                                              CancellationToken cancellationToken = default)
+                                                                 string? tickerName = null,
+                                                                 CancellationToken cancellationToken = default)
     {
         IReadOnlyList<Ticker> tickers = await tickerRepository.Read(tickerId, tickerName, cancellationToken);
         return tickers.Select(Map).ToArray();
@@ -20,7 +20,7 @@ public sealed class InvestmentsService(ITickerRepository tickerRepository,
     public async Task<TickerResponse> UpsertTicker(TickerUpsertRequest request, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
-        Ticker ticker = new Ticker
+        Ticker ticker = new()
         {
             TickerId = request.TickerId,
             TickerName = request.TickerName,
@@ -31,20 +31,22 @@ public sealed class InvestmentsService(ITickerRepository tickerRepository,
     }
 
     public async Task<IReadOnlyList<StockTransactionResponse>> ReadStockTransactions(int? stockTransactionId = null,
-                                                                                  int? stockTransactionLotId = null,
-                                                                                  int? tickerId = null,
-                                                                                  CancellationToken cancellationToken = default)
+                                                                                     int? stockTransactionLotId = null,
+                                                                                     int? tickerId = null,
+                                                                                     CancellationToken cancellationToken = default)
     {
-        IReadOnlyList<StockTransaction> transactions =
-            await stockTransactionRepository.Read(stockTransactionId, stockTransactionLotId, tickerId, cancellationToken);
+        IReadOnlyList<StockTransaction> transactions = await stockTransactionRepository.Read(stockTransactionId,
+                                                                                             stockTransactionLotId,
+                                                                                             tickerId,
+                                                                                             cancellationToken);
         return transactions.Select(Map).ToArray();
     }
 
     public async Task<StockTransactionResponse> UpsertStockTransaction(StockTransactionUpsertRequest request,
-                                                                     CancellationToken cancellationToken = default)
+                                                                       CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
-        StockTransaction transaction = new StockTransaction
+        StockTransaction transaction = new()
         {
             StockTransactionId = request.StockTransactionId,
             StockTransactionLotId = request.StockTransactionLotId,

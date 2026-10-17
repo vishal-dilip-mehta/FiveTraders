@@ -19,8 +19,8 @@ public sealed class StockTransactionRepository : IStockTransactionRepository
                                                                int? tickerId = null,
                                                                CancellationToken cancellationToken = default)
     {
-        await using SqlConnection connection = new SqlConnection(this.connectionString);
-        using SqlCommand command = new SqlCommand("Investments.StockTransactionRead", connection);
+        await using SqlConnection connection = new(this.connectionString);
+        using SqlCommand command = new("Investments.StockTransactionRead", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@StockTransactionId", SqlDbType.Int).Value = (object?)stockTransactionId ?? DBNull.Value;
         command.Parameters.Add("@StockTransactionLotId", SqlDbType.Int).Value = (object?)stockTransactionLotId ?? DBNull.Value;
@@ -43,8 +43,8 @@ public sealed class StockTransactionRepository : IStockTransactionRepository
         ArgumentNullException.ThrowIfNull(stockTransaction);
         ArgumentOutOfRangeException.ThrowIfNegative(stockTransaction.StockTransactionId);
 
-        await using SqlConnection connection = new SqlConnection(this.connectionString);
-        using SqlCommand command = new SqlCommand("Investments.StockTransactionUpsert", connection);
+        await using SqlConnection connection = new(this.connectionString);
+        using SqlCommand command = new("Investments.StockTransactionUpsert", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add("@StockTransactionId", SqlDbType.Int).Value =
             stockTransaction.StockTransactionId == 0 ? DBNull.Value : stockTransaction.StockTransactionId;
