@@ -11,4 +11,10 @@
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.3.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="../FiveTraders.RequestModel/FiveTraders.RequestModel.csproj" />
+        <ProjectReference Include="../FiveTraders.ResponseModel/FiveTraders.ResponseModel.csproj" />
+        <ProjectReference Include="..\FiveTraders.Service\FiveTraders.Service.csproj" />
+    </ItemGroup>
+
 </Project>

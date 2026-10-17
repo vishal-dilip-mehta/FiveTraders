@@ -3,4 +3,6 @@
   <Project Path="FiveTraders.Repository/FiveTraders.Repository.csproj" />
   <Project Path="FiveTraders.DataModel/FiveTraders.DataModel.csproj" />
   <Project Path="FiveTraders.Service/FiveTraders.Service.csproj" />
+  <Project Path="FiveTraders.RequestModel/FiveTraders.RequestModel.csproj" />
+  <Project Path="FiveTraders.ResponseModel/FiveTraders.ResponseModel.csproj" />
 </Solution>

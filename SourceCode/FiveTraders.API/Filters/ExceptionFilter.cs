@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiveTraders.Api.Filters;
 
-public sealed class ExceptionFilter(ILogger<ExceptionFilter> logger) : IExceptionFilter
+public sealed class ExceptionFilter(ILogger<ExceptionFilter> logger)
+    : IExceptionFilter
 {
     public void OnException(ExceptionContext context)
     {
-        logger.LogError(context.Exception, "An unhandled exception occurred while processing {Path}",
-            context.HttpContext.Request.Path);
+        logger.LogError(context.Exception, "An unhandled exception occurred while processing {Path}", context.HttpContext.Request.Path);
 
         ProblemDetails problem = new()
         {

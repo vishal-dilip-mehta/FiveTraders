@@ -1,3 +1,4 @@
+using FiveTraders.Api.Extensions;
 using FiveTraders.Api.Filters;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,9 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers(options => options.Filters.Add<ExceptionFilter>());
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
@@ -20,9 +24,10 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.MapControllers();
 
